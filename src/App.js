@@ -1,36 +1,9 @@
 import './App.css';
 import React from 'react';
-let data
+import Main from './components/Main'; 
 
-
-function Curency(props) {
-    
-   
-
-   async  function fetchData() { 
-    const res = await fetch('http://localhost:3001/', {
-       headers: {
-           'Access-Control-Allow-Origin': '*'
-       }
-    })
-
-    data = await res.json()
-    data = await data.data[1].name
-    
-   console.log(data)
-   // 
-}
-fetchData();
-
-return <div>{props.name}</div>;
-}
-
-   
 function App() {
-  
-
-        return ()
-            
+   return <Main />
+   
 }
-
-  export default App;
+export default App;
