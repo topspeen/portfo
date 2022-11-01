@@ -4,7 +4,7 @@ import React from 'react';
 class Quotes extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { quotes:{},
+        this.state = { quotes: 'curency',
                        price: 'price',
                         meta: 'meta',
                         market_cap: 'market_cap',
@@ -17,7 +17,7 @@ class Quotes extends React.Component {
         (async() => {
             let res = await fetch('http://localhost:3001');
             let json = await res.json();
-            json = JSON.stringify(json.data);
+            json = json.data[1];
             // console.log(json.quote.USD.price);
             console.log(json);
             let json_price = json.quote.USD.price
@@ -52,46 +52,26 @@ class Quotes extends React.Component {
    
     render() {
       
-        return ( <div class="table-responsive">
-            <h2>All Crypto</h2>
+        return ( <div>
             
-                <table class="table table-striped table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Asset</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Market Cap</th>
-                            <th scope="col">7d %</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1,001</td>
-                            <td><img src={this.state.meta} class="img-fluid" alt='logo' /> {this.state.quotes[1].name}</td>
-                            <td>{this.state.price}</td>
-                            <td>{this.state.market_cap}</td>
-                            <td>{this.state.percent_change_7d}</td>
-                        </tr>
-
-                        </tbody>
-                </table>
+            <div class="container-md text-center">
+  <div class="row">
+    <div class="col">{this.props.name}</div>
+    <div class="col">
+    <div class="row-sm-6">
+        <img src={this.state.meta} class="img-fluid" alt='logo' /> 
+    </div>
+    <div class="row-sm-6">  
+        {this.state.quotes.name}
+    </div>    
+        </div>
+    <div class="col">{this.state.price}</div>
+    <div class="col">{this.state.market_cap}</div>
+    <div class="col">{this.state.percent_change_7d}</div>
+  </div>
+</div>
+                   
             </div>
-
-
-
-
-
-
-
-
-
-
-
-            
-            
-           
-           
             );
     }
 }
