@@ -1,18 +1,33 @@
 import './App.css';
-import React from 'react';
+import React, {useState} from 'react';
 import Quotes from './components/Quotes';
-import AddAsset from './components/AddAsset';
+import Form from './components/Form';
 
 function App(props) {
-    let curencyList = props.curency.map((curency) => (
-        <Quotes id={curency.id} name={curency.name} key={curency.id} />
-    ) );
-    curencyList.splice(2,1);
+    const [curency, setCurency] = useState(props.curency);
 
-    const addAssetList = props.curency.map((curency) => (
-        <AddAsset id={curency.id} name={curency.name} key={curency.id} />
+    function addCurency(id) {
+        const newCurency = {id, name: 'name', price: "price", logo: "logo", marketCap: "marketCap", sev_d: "7d"};
+        setCurency([...curency, newCurency]);
+    }
+
+    function deleteCurency(id) {
+      const remainingCurency = curency.filter((cure) => id !== cure.id);
+      setCurency(remainingCurency);
+    }
+
+    const curencyList = curency.map((curency) => (
+        <Quotes 
+              id={curency.id} 
+              name={curency.name} 
+              price={curency.price} 
+              logo={curency.logo} 
+              marketCap={curency.marketCap} 
+              sev_d={curency.sev_d} 
+              deleteCurency={deleteCurency}
+              fetch={fetch}
+              />
     ) );
-    addAssetList.splice(0,2);
 
     return (
     <div>
@@ -37,10 +52,7 @@ function App(props) {
    
     </div>
     <div class="col">
-    <select class="form-select" aria-label="Default select example">
-  <option selected>Add Asset</option>
-  {addAssetList}
-</select>
+    <Form addCurency={addCurency} />
     </div>
     <div class="col">
    
@@ -64,6 +76,7 @@ function App(props) {
     <div class="col">Price</div>
     <div class="col">Market Cap</div>
     <div class="col">7d %</div>
+    <div class="col"></div>
   </div>
   
     {curencyList}

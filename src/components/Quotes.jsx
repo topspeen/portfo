@@ -1,23 +1,24 @@
-
-import React from 'react';
+import React from "react";
 
 class Quotes extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { quotes: 'curency',
-                       price: 'price',
-                        meta: 'meta',
-                        market_cap: 'market_cap',
-                        percent_change_7d: 'percent_change_7d' };
+        this.state = { 
+                    id: props.id, 
+                    name: props.name, 
+                    price: "price", 
+                    logo: "logo", 
+                    marketCap: "marketCap", 
+                    sev_d: "7d" 
+                    };
     }
-
     
-
     componentDidMount() {
         (async() => {
             let res = await fetch('http://localhost:3001');
             let json = await res.json();
-            json = json.data[1];
+           let json_id = props.id
+            json = json.data[{json_id}];
             // console.log(json.quote.USD.price);
             console.log(json);
             let json_price = json.quote.USD.price
@@ -26,54 +27,60 @@ class Quotes extends React.Component {
             let meta_res = await fetch('http://localhost:3001/meta');
             let meta_json = await meta_res.json();
             console.log(meta_json);
-            meta_json = meta_json.data[1].logo
-
+            meta_json = meta_json.data[{json_id}].logo
+    
             // Create price formatter.
     const price_formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
     });
-
+    
     // Create market cap formatter.
     const market_cap_formatter = new Intl.NumberFormat('en-US', {
     notation: 'compact'
         });
-  
-  
-            this.setState({quotes: json,
-                        price: price_formatter.format(json_price),
-                        meta: meta_json,
-                        market_cap: market_cap_formatter.format(json_marcketcap),
-                        percent_change_7d: parseFloat(json_percent_change_7d).toFixed(2)+"%" })                         
-        })();
-        
+    
+        this.setState({id: props.id, 
+                       name: props.name, 
+                       price: price_formatter.format(json_price), 
+                       logo: meta_json, 
+                       marketCap: market_cap_formatter.format(json_marcketcap), 
+                       sev_d: parseFloat(json_percent_change_7d).toFixed(2)+"%" })
+           
+    
     }
-
-   
+        )();
+    }
+    
     render() {
-      
-        return ( <div>
-            
+        return (
             <div class="container-md text-center">
-  <div class="row">
-    <div class="col">{this.props.name}</div>
-    <div class="col">
-    <div class="row-sm-6">
-        <img src={this.state.meta} class="img-fluid" alt='logo' /> 
-    </div>
-    <div class="row-sm-6">  
-        {this.state.quotes.name}
-    </div>    
-        </div>
-    <div class="col">{this.state.price}</div>
-    <div class="col">{this.state.market_cap}</div>
-    <div class="col">{this.state.percent_change_7d}</div>
-  </div>
-</div>
-                   
+            <div class="row">
+              <div class="col">{props.name}</div>
+              <div class="col">
+              <div class="row-sm-6">
+                  <img src={this.state.logo} class="img-fluid" alt='logo' /> 
+              </div>
+              <div class="row-sm-6">  
+                  {}
+              </div>    
+                  </div>
+              <div class="col">{this.state.price}</div>
+              <div class="col">{this.state.marketCap}</div>
+              <div class="col">{this.state.sev_d}</div>
+              <div class="col">
+              <button 
+                          type="button" 
+                          className="btn btn__danger"
+                          onClick={() => props.deleteCurency({json_id})}
+                >
+                      Delete <span className="visually-hidden">{props.name}</span>
+                    </button>
+              </div>
             </div>
-            );
+          </div>
+        )
     }
+    
 }
-
 export default Quotes;
