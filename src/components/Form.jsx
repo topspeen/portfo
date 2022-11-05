@@ -35,14 +35,14 @@ export default function Form(props) {
             <select 
         onChange={handleChange}
         value={id}
-        class="form-select" 
+        className="form-select" 
         aria-label="Default select example"
         >
         <option selected>Add Asset</option>
          {addAssetList}
 
         </select>
-        <button type="submit" className="btn btn__primary btn__lg">
+        <button type="submit" classNameName="btn btn__primary btn__lg">
           Add
         </button>
         </form>

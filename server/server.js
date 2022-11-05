@@ -22,7 +22,7 @@ app.use(cors(corsOptions));
 // fetch data from CMC;
 var data_config = {
     method: 'get',
-    url: 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?id=1,2,74,1024,6636,1839',
+    url: 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?id=1,2,74,1027,6636,1839',
     headers: {
         'X-CMC_PRO_API_KEY': '69e3b39b-71c3-4c16-bf79-12a42a042a25',
         'Accept': 'application/json',
@@ -30,21 +30,12 @@ var data_config = {
     }
 };
 
-axios(data_config)
-    .then(function(response) {
-        dataFromCMC = response.data;
-    }).then(function(response) {
-        // console.log(JSON.stringify(dataFromCMC));
-    }).catch(function(error) {
-        console.log(error);
-    }).then(function() {
 
-    });
 
 // fetch metaData from CMC;
 var metaData_config = {
     method: 'get',
-    url: 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?id=1,2,74,1024,6636,1839',
+    url: 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?id=1,2,74,1027,6636,1839',
     headers: {
         'X-CMC_PRO_API_KEY': '69e3b39b-71c3-4c16-bf79-12a42a042a25',
         'Accept': 'application/json',
@@ -52,16 +43,32 @@ var metaData_config = {
     }
 };
 
-axios(metaData_config)
-    .then(function(response) {
-        metaDataFromCMC = response.data;
-    }).then(function(response) {
-        console.log(JSON.stringify(metaDataFromCMC.data[2]));
-    }).catch(function(error) {
-        console.log(error);
-    }).then(function() {
 
-    });
+
+setInterval(function() {
+    axios(metaData_config)
+        .then(function(response) {
+            metaDataFromCMC = response.data;
+        }).then(function(response) {
+            console.log(JSON.stringify(metaDataFromCMC.data[2]));
+        }).catch(function(error) {
+            console.log(error);
+        }).then(function() {
+
+        });
+
+    axios(data_config)
+        .then(function(response) {
+            dataFromCMC = response.data;
+        }).then(function(response) {
+            // console.log(JSON.stringify(dataFromCMC));
+        }).catch(function(error) {
+            console.log(error);
+        }).then(function() {
+
+        });
+
+}, 60000);
 
 // send data to ReactApp
 app.get('/', (req, res) => {
