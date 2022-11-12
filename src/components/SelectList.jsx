@@ -1,65 +1,91 @@
 import React, {useState} from 'react';
-import { todoListState } from '../App';
+import { ListState } from '../App';
 import {
-  RecoilRoot,
-  atom,
   selector,
   useRecoilState,
   useRecoilValue,
-  useSetRecoilState,
 } from 'recoil';
 
+const filterToSelect = selector({
+  key: 'filterSelect',
+  get: ({get}) => {
+    const list = get(ListState);
+
+        return list.filter((item) => !item.isComplete);
+   
+    }
+  },
+);
+
+
+
+
+
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
 function SelectList() {
-    const selectList = useRecoilValue(filteredSelectListState);
-    const newSelectList = selectList.map((selectItem) => (
-      <SelectItem key={selectItem.id} item={selectItem} />
+ 
+  const [selectList, setSelectList] = useRecoilState(ListState);
+   //toggle
+  function toggleItemCompletion(i) {
+    console.log(`i from toggle ${i}`)
+    const index = selectList.findIndex((listItem) => listItem.item === i);
+    console.log(`selectlist from toggle ${JSON.stringify(selectList)}`)
+    console.log(`index from toggle ${index}`)
+    const item = selectList[index];
+    console.log(`item from toggle ${JSON.stringify(item)}`)
+    const newList = replaceItemAtIndex(selectList, index, {
+      ...item,
+      isComplete: !item.isComplete,
+  });
+  setSelectList(newList);
+  };
+
+  const [i, setI] = useState('');
+    const filteredSelectList = useRecoilValue(filterToSelect);
+    const newSelectList = filteredSelectList.map((item) => (
+      <SelectItem key={item.id} name={item.item}/>
     ));
+
+
+
+    function handleChange(e) {
+      setI(e.target.value);
+      }
   
+      function handleSubmit(e) {
+       e.preventDefault();
+      toggleItemCompletion(i);
+      setI('')
+      }
+
+
     return (
-  <div>
-  {newSelectList}
-  </div>
-      
-    
+  <form onSubmit={handleSubmit} >
+    <select 
+    onChange={handleChange}
+     value={i}
+    >
+      <option value="" selected>Add</option> 
+      {newSelectList}
+    </select>
+    <button type='submit'>Add</button>
+  </form>
     );
   }
   
-  function SelectItem({item}) {
-    const [selectList, setSelectList] = useRecoilState(todoListState);
-    const index = selectList.findIndex((listItem) => listItem === item);
-  
-  
-    const toggleItemCompletion = () => {
-      const newList = replaceItemAtIndex(selectList, index, {
-        ...item,
-        isComplete: !item.isComplete,
-    });
-    setSelectList(newList);
-  };
-  
-  
+  function SelectItem(props) {
   return (
-    <div>
-      {item.id}
-      <button onClick={toggleItemCompletion}>X</button>
-    </div>
+    <>
+      <option value={props.name}> {props.name}
+      </option>
+    </>
   );
   }
   
   
-  const filteredSelectListState = selector({
-    key: 'FilteredSelectList',
-    get: ({get}) => {
-      const list = get(todoListState);
-  
-          return list.filter((item) => !item.isComplete);
-     
-      }
-    },
-  );
 
-  function replaceItemAtIndex(arr, index, newValue) {
-    return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-  }
 
 export default SelectList;
