@@ -7,17 +7,6 @@ import {
   atom,
 } from 'recoil';
 
-// export const ListState = atom({
-//   key: 'CurencyList',
-//   default: [
-//     { id: "1", item: "BTC", isComplete: true },
-//     { id: "2", item: "LTC", isComplete: true },
-//     { id: "74", item: "DOGE", isComplete: true, },
-//     { id: "102", item: "ETH", isComplete: false },
-//     { id: "663", item: "DOT", isComplete: false },
-//     { id: "189", item: "BNB", isComplete: false },
-// ],
-// });
 export const ListState = atom({
   key: 'CurencyList',
   default: [
