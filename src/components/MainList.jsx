@@ -6,6 +6,8 @@ import {
   useRecoilValue,
 } from 'recoil';
 import { ListState } from '../App';
+import Button from 'react-bootstrap/Button';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 // Create price formatter.
 const price_formatter = new Intl.NumberFormat('en-US', {
@@ -48,7 +50,7 @@ export default function MainList() {
   
    //fetching data from server and state to render it
    const [i, setI] = useState({ 
-    curency: 'curency',
+    name: 'curency',
     price: 'price',
     meta: 'meta',
     market_cap: 'market_cap',
@@ -71,7 +73,7 @@ meta_json = meta_json.data[item.id].logo
 
 
 setI({
-quotes: json.name,
+name: json.name,
 price: json.quote.USD.price,
 meta: meta_json,
 market_cap: json.quote.USD.market_cap,
@@ -83,13 +85,10 @@ percent_change_7d: json.quote.USD.percent_change_7d
 
   
   return (
-    // <div>
-    //   {item.item}
-    //   <button onClick={toggleItemCompletion}>X</button>
-    // </div>
+
     <div className="container-md text-center">
     <div className="row">
-      <div className="col">{i.curency}</div>
+      <div className="col">{i.name}</div>
       <div className="col">
       <div className="row-sm-6">
           <img src={i.meta} className="img-fluid" alt='logo' /> 
@@ -104,13 +103,7 @@ percent_change_7d: json.quote.USD.percent_change_7d
         <span style={{color: i.percent_change_7d > 0 ? 'green' : 'red' }}>{parseFloat(i.percent_change_7d).toFixed(2)+"%"}</span>
       </div>
       <div className="col">
-              <button 
-                          type="button" 
-                          className="btn btn__danger"
-                          onClick={toggleItemCompletion}
-                >
-                      Delete 
-                    </button>
+              <CloseButton  onClick={toggleItemCompletion} />
               </div>
             </div>
           </div>

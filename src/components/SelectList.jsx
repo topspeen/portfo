@@ -5,6 +5,12 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
+import Button from 'react-bootstrap/Button';
+import Select from 'react-bootstrap/FormSelect';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Form } from 'react-bootstrap';
 
 const filterToSelect = selector({
   key: 'filterSelect',
@@ -63,16 +69,26 @@ function SelectList() {
 
 
     return (
-  <form onSubmit={handleSubmit} >
-    <select 
+  <Form onSubmit={handleSubmit} >
+    
+      <Container fluid>
+      <Form.Label>Add cryptocurency</Form.Label>
+    <Row>
+      <Col></Col>
+      <Col>    <Select 
     onChange={handleChange}
      value={i}
+
     >
-      <option value="" selected>Add</option> 
+      <option value="" selected></option> 
       {newSelectList}
-    </select>
-    <button type='submit'>Add</button>
-  </form>
+    </Select>
+    </Col>
+      <Col><Button variant="secondary" type='submit'>Add</Button></Col>
+    </Row>
+  </Container>
+
+  </Form>
     );
   }
   
