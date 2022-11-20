@@ -4,6 +4,10 @@ import {
   selector,
   useRecoilValue,
 } from 'recoil';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Alert from 'react-bootstrap/Alert';
+
+
 
 
 // Create price formatter.
@@ -30,6 +34,7 @@ const topList = selector({
 
 export default function TopList() {
 
+
     const mainList = useRecoilValue(topList);
     console.log(`mainlist ${mainList}`)
     
@@ -44,16 +49,17 @@ export default function TopList() {
   function TopItem({item}) {
   
   return (
+    <ListGroup.Item action variant='light' >
 
-    <div className="container-md text-center">
+    <div className="container text-center">
     <div className="row">
-      <div className="col">{item.id}</div>
+      <div className="col"><img src={item.image.small} className="img-fluid" alt='logo' /></div>
       <div className="col">
-      <div className="row-sm-6">
-          <img src={item.image.small} className="img-fluid" alt='logo' /> 
-      </div>
-      <div className="row-sm-6">  
-          {}
+        <div className="col">
+         
+        </div>
+      <div className="col">
+        <div className="row-sm-S6">{item.name}</div> 
       </div>    
           </div>
       <div className="col">{price_formatter.format(item.market_data.current_price.usd)}</div>
@@ -64,7 +70,7 @@ export default function TopList() {
       
             </div>
           </div>
-
+          </ListGroup.Item>
   );
   }
   

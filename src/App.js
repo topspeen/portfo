@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import SelectList from './components/SelectList';
-import MainList from './components/MainList';
 import TopList from './components/TopList';
 import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
@@ -8,6 +7,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import './App.css';
 import {
   RecoilRoot,
@@ -27,71 +29,32 @@ export const ListState = atom({
 ],
 });
 
-// // Create price formatter.
-// const price_formatter = new Intl.NumberFormat('en-US', {
-//   style: 'currency',
-//   currency: 'USD',
-//   });
-  
-//   // Create market cap formatter.
-//   const market_cap_formatter = new Intl.NumberFormat('en-US', {
-//   notation: 'compact'
-//   });
-
-// let dataFromCoingecko;
-// (async() => {
-//   let res = await fetch('http://localhost:3001/top');
-//   let json = await res.json();
-//   dataFromCoingecko = await json;
-//   console.log(dataFromCoingecko)
-// })();
-// //fetch coingecko data and create atom with loadable
-// function TopCoingecko() {
-//   const TopState = atom({
-//     key: 'TopState',
-//     default: topStateLoadable,
-//   })
-  
-//   const topStateLoadable = useRecoilValueLoadable(dataFromCoingecko)
-//   const listTop = useRecoilValue(TopState)
-
-
-//   return(
-//     <div>
-//     {listTop.map((item) => (
-//         <TopItem key={item.id} item={item} />))}
-//     </div>
-//   )
-// }
-
-// function TopItem({item}) {
-//   return(
-//     <div className="container-md text-center">
-//     <div className="row">
-//       <div className="col">{item.id}</div>
-//       <div className="col">
-//       <div className="row-sm-6">
-//           <img src={item.image.small} className="img-fluid" alt='logo' /> 
-//       </div>
-//       <div className="row-sm-6">  
-//           {}
-//       </div>    
-//           </div>
-//       <div className="col">{price_formatter.format(item.matket_data.current_price.usd)}</div>
-//       <div className="col">{market_cap_formatter.format(item.matket_data.market_cap.usd)}</div>
-//       <div className="col">
-//         <span style={{color: item.matket_data.price_change_percentage_7d  > 0 ? 'green' : 'red' }}>{parseFloat(item.matket_data.price_change_percentage_7d).toFixed(2)+"%"}</span>
-//       </div>
-      
-//             </div>
-//           </div>
-//   )
-// }
+function NavigationBar() {
+  return(
+    <>
+    <Container fluid>
+    <Navbar bg="light" variant="light">
+    
+      <Container>
+          <Navbar.Brand href="#home"></Navbar.Brand>
+          <Nav className="me-auto" defaultActiveKey='#home' variant="tabs">
+            <Nav.Link href="#home">Cryptocurrencies</Nav.Link>
+            <Nav.Link href="#features">Watchlist</Nav.Link>
+            <Nav.Link href="#pricing">Portfolio</Nav.Link>
+          </Nav>
+        </Container>
+    <Navbar.Text>
+            Signed in as: <a href="#login">Mark Otto</a>
+          </Navbar.Text>
+        
+      </Navbar>
+    </Container>
+   
+    </>
+  )
+}
 
 function App(props) {
-
-
-  
 
   return (
     <RecoilRoot>
@@ -100,7 +63,7 @@ function App(props) {
       // key="Secondary"
       // bg="secondary"
       // text="white"
-      style={{ width: '18rem' }}>
+      >
       <Card.Body>
         <Card.Title>Get started with PortFo</Card.Title>
         <Card.Text>
@@ -111,37 +74,32 @@ function App(props) {
       
 
 <div>
-  <Container fluid>
-    <Row>
-      <Col></Col>
-      <Col></Col>
-      <Col><SelectList /></Col>
-    </Row>
-  </Container>
+  
+ 
+      <NavigationBar />
+  
 
 <div className="table-responsive">
             <h2>All Crypto</h2>
-    <div className="container text-center">
+ </div>
+ <ListGroup variant='flush'>
+      <ListGroup.Item>
+      <div className="container text-center">
     <div className="row">
    <div className="col">#</div>
    <div className="col">Asset</div>
    <div className="col">Price</div>
    <div className="col">Market Cap</div>
    <div className="col">7d %</div>
-   <div className="col"></div>
- </div>
-
+   </div>
+   </div>
+      </ListGroup.Item>
     
     <Suspense fallback={<div>Loading...</div>}>
     <TopList />
     </Suspense>
+    </ListGroup>
     
-    
-
-    
-    
-    </div>
-    </div>
     </div>
     </RecoilRoot>
   );
