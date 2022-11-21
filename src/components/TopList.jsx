@@ -53,7 +53,7 @@ export default function TopList() {
 
     <div className="container text-center">
     <div className="row">
-      <div className="col"><img src={item.image.small} className="img-fluid" alt='logo' /></div>
+      <div className="col"><img src={item.image.thumb} className="img-fluid" alt='logo' /></div>
       <div className="col">
         <div className="col">
          
