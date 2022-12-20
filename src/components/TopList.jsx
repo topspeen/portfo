@@ -5,7 +5,6 @@ import {
   useRecoilValue,
 } from 'recoil';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Alert from 'react-bootstrap/Alert';
 
 
 
@@ -24,7 +23,8 @@ const price_formatter = new Intl.NumberFormat('en-US', {
 const topList = selector({
   key: 'topList',
   get: async () => {
-    let response = await fetch('http://localhost:3001/top');
+    // let response = await fetch('lambda/coingecko-api');
+    let response = await fetch('../.netlify/functions/coingecko-api');
     response = await response.json();
     console.log(response)
     return response;

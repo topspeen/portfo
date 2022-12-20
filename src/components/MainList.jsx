@@ -6,7 +6,6 @@ import {
   useRecoilValue,
 } from 'recoil';
 import { ListState } from '../App';
-import Button from 'react-bootstrap/Button';
 import CloseButton from 'react-bootstrap/CloseButton';
 
 // Create price formatter.

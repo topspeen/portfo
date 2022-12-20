@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import SelectList from './components/SelectList';
 import TopList from './components/TopList';
 import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
@@ -17,17 +16,6 @@ import {
 } from 'recoil';
 import Card from 'react-bootstrap/Card';
 
-export const ListState = atom({
-  key: 'CurencyList',
-  default: [
-    { id: "1", item: "BTC", price: "price", logo: "logo", marketCap: "marketCap", sev_d: "7d", isComplete: true, },
-    { id: "2", item: "LTC",  price: "price", logo: "logo", marketCap: "marketCap", sev_d: "7d", isComplete: true, },
-    { id: "74", item: "DOGE",  price: "price", logo: "logo", marketCap: "marketCap", sev_d: "7d",  isComplete: true, },
-    { id: "1027", item: "ETH",  price: "price", logo: "logo", marketCap: "marketCap", sev_d: "7d",  isComplete: false, },
-    { id: "6636", item: "DOT",  price: "price", logo: "logo", marketCap: "marketCap", sev_d: "7d",  isComplete: false, },
-    { id: "1839", item: "BNB",  price: "price", logo: "logo", marketCap: "marketCap", sev_d: "7d",  isComplete: false, },
-],
-});
 
 function NavigationBar() {
   return(
@@ -53,6 +41,24 @@ function NavigationBar() {
     </>
   )
 }
+// conect to lambda
+
+// let data;
+// (async () => {
+//    console.log('coingecko')
+//    let response = await fetch('../.netlify/functions/coingecko-api');
+//    data = await response.json();
+//    console.log(JSON.stringify(data));
+//   }
+//   )();
+  
+//   function CoinGecko () {
+//     return (
+//       <div>data</div>
+//     )
+//   }
+
+
 
 function App(props) {
 
@@ -96,6 +102,7 @@ function App(props) {
       </ListGroup.Item>
     
     <Suspense fallback={<div>Loading...</div>}>
+    
     <TopList />
     </Suspense>
     </ListGroup>
