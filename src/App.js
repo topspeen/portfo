@@ -41,23 +41,6 @@ function NavigationBar() {
     </>
   )
 }
-// conect to lambda
-
-// let data;
-// (async () => {
-//    console.log('coingecko')
-//    let response = await fetch('../.netlify/functions/coingecko-api');
-//    data = await response.json();
-//    console.log(JSON.stringify(data));
-//   }
-//   )();
-  
-//   function CoinGecko () {
-//     return (
-//       <div>data</div>
-//     )
-//   }
-
 
 
 function App(props) {
