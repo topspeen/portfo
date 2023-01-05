@@ -56,7 +56,7 @@ function App(props) {
       <Card.Body>
         <Card.Title>Get started with PortFo</Card.Title>
         <Card.Text>
-        Browse, create watchlists, monitor cryptocurency prices and manage portfolio.
+        Browse, create watchlists, monitor cryptocurrency prices and manage portfolio.
         </Card.Text>
       </Card.Body>
     </Card>
