@@ -32,7 +32,7 @@ function NavigationBar() {
           </Nav>
         </Container>
     <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
+            Signed in as: <a href="#login">Daxespen</a>
           </Navbar.Text>
         
       </Navbar>
@@ -54,7 +54,7 @@ function App(props) {
       // text="white"
       >
       <Card.Body>
-        <Card.Title>Get started with PortFo</Card.Title>
+        <Card.Title>Get started with Daxespen</Card.Title>
         <Card.Text>
         Browse, create watchlists, monitor cryptocurrency prices and manage portfolio.
         </Card.Text>
