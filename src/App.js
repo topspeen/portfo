@@ -4,16 +4,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './App.css';
-import {
-  RecoilRoot,
-  atom,
-} from 'recoil';
+import {RecoilRoot} from 'recoil';
 import Card from 'react-bootstrap/Card';
 
 
@@ -48,11 +43,7 @@ function App(props) {
   return (
     <RecoilRoot>
       <Card 
-      border='light'
-      // key="Secondary"
-      // bg="secondary"
-      // text="white"
-      >
+      border='light'>
       <Card.Body>
         <Card.Title>Get started with Daxespen</Card.Title>
         <Card.Text>

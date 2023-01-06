@@ -23,7 +23,6 @@ const price_formatter = new Intl.NumberFormat('en-US', {
 const topList = selector({
   key: 'topList',
   get: async () => {
-    // let response = await fetch('lambda/coingecko-api');
     let response = await fetch('../.netlify/functions/coingecko-api');
     response = await response.json();
     console.log(response)
@@ -36,7 +35,12 @@ export default function TopList() {
 
 
     const mainList = useRecoilValue(topList);
-    console.log(`mainlist ${mainList}`)
+    // mainList.sort();
+    // function compareItems(a, b) {
+    //   return a.id - b.id;
+    // }
+    // let sortMainList = mainList.sort(compareItems);
+    // console.log(`mainlist.sort ${sortMainList}`)
     
     return (
   <div>
