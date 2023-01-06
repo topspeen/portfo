@@ -30,17 +30,22 @@ const topList = selector({
     }
   },
 );
+const sortedTopList = selector({
+  key: 'sortedTopList',
+  get: ({get}) => {
+    let sorted = get(topList);
+     
+     sorted = sorted.sort((a, b) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0));
+     return sorted;
+    }
+  },
+);
 
 export default function TopList() {
 
 
-    const mainList = useRecoilValue(topList);
-    // mainList.sort();
-    // function compareItems(a, b) {
-    //   return a.id - b.id;
-    // }
-    // let sortMainList = mainList.sort(compareItems);
-    // console.log(`mainlist.sort ${sortMainList}`)
+    const mainList = useRecoilValue(sortedTopList);
+   
     
     return (
   <div>
