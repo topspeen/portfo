@@ -10,6 +10,7 @@ import Nav from 'react-bootstrap/Nav';
 import './App.css';
 import {RecoilRoot} from 'recoil';
 import Card from 'react-bootstrap/Card';
+import Sorting from './components/Sorting';
 
 
 function NavigationBar() {
@@ -63,17 +64,7 @@ function App(props) {
             <h2>All Crypto</h2>
  </div>
  <ListGroup variant='flush'>
-      <ListGroup.Item>
-      <div className="container text-center">
-    <div className="row">
-   <div className="col">#</div>
-   <div className="col">Asset</div>
-   <div className="col">Price</div>
-   <div className="col">Market Cap</div>
-   <div className="col">7d %</div>
-   </div>
-   </div>
-      </ListGroup.Item>
+ <Sorting />
     
     <Suspense fallback={<div>Loading...</div>}>
     

@@ -1,7 +1,9 @@
 import React from 'react';
 import '../App.css';
 import {
+  atom,
   selector,
+  useRecoilState,
   useRecoilValue,
 } from 'recoil';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -20,6 +22,8 @@ const price_formatter = new Intl.NumberFormat('en-US', {
   notation: 'compact'
   });
 
+ 
+
 const topList = selector({
   key: 'topList',
   get: async () => {
@@ -30,21 +34,18 @@ const topList = selector({
     }
   },
 );
-const sortedTopList = selector({
-  key: 'sortedTopList',
-  get: ({get}) => {
-    let sorted = get(topList);
-     
-     sorted = sorted.sort((a, b) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0));
-     return sorted;
-    }
-  },
-);
+
+export const topListState = atom ({
+  key: 'listState',
+  default: topList,
+});
+
+
 
 export default function TopList() {
 
 
-    const mainList = useRecoilValue(sortedTopList);
+    const mainList = useRecoilValue(topListState);
    
     
     return (
