@@ -60,9 +60,7 @@ function App() {
       <NavigationBar />
   
 
-<div className="table-responsive">
-            <h2>All Crypto</h2>
- </div>
+
  <ListGroup variant='flush'>
  <Sorting />
     
