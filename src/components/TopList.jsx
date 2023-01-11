@@ -1,10 +1,13 @@
 import React from 'react';
 import '../App.css';
 import {
+  atom,
   selector,
+  useRecoilState,
   useRecoilValue,
 } from 'recoil';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { filteredSortingState } from './Sorting';
 
 
 
@@ -20,10 +23,11 @@ const price_formatter = new Intl.NumberFormat('en-US', {
   notation: 'compact'
   });
 
+ 
+
 const topList = selector({
   key: 'topList',
   get: async () => {
-    // let response = await fetch('lambda/coingecko-api');
     let response = await fetch('../.netlify/functions/coingecko-api');
     response = await response.json();
     console.log(response)
@@ -32,11 +36,18 @@ const topList = selector({
   },
 );
 
+export const topListState = atom ({
+  key: 'listState',
+  default: topList,
+});
+
+
+
 export default function TopList() {
 
 
-    const mainList = useRecoilValue(topList);
-    console.log(`mainlist ${mainList}`)
+    const mainList = useRecoilValue(filteredSortingState);
+   
     
     return (
   <div>
