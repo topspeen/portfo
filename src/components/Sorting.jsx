@@ -27,17 +27,18 @@ export const filteredSortingState = selector({
         const toggle = get(toggleFilter);
         const filter = get(sortingStateFilter);
         const list = get(topListState);
+        let newFilter = filter.toLocaleLowerCase();
         console.log(toggle);
 
         switch (toggle) {
             case false: {
                 if(filter == '') return list;
-                else return list.filter(Item => Item.id.includes(filter));
+                else return list.filter(Item => Item.id.includes(newFilter));
             }
             case true: {
                 let copyList = JSON.parse(JSON.stringify(list));
                 if(filter == '') return copyList.sort((a, b) => (a.id > b.id) ? 1 : ((a.id < b.id) ? -1 : 0));
-                else return copyList.sort((a, b) => (a.id > b.id) ? 1 : ((a.id < b.id) ? -1 : 0)).filter(Item => Item.id.includes(filter));
+                else return copyList.sort((a, b) => (a.id > b.id) ? 1 : ((a.id < b.id) ? -1 : 0)).filter(Item => Item.id.includes(newFilter));
             }
         }
         
