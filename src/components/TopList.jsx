@@ -7,6 +7,7 @@ import {
   useRecoilValue,
 } from 'recoil';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { filteredSortingState } from './Sorting';
 
 
 
@@ -45,7 +46,7 @@ export const topListState = atom ({
 export default function TopList() {
 
 
-    const mainList = useRecoilValue(topListState);
+    const mainList = useRecoilValue(filteredSortingState);
    
     
     return (
