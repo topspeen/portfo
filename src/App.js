@@ -39,7 +39,7 @@ function NavigationBar() {
 }
 
 
-function App(props) {
+function App() {
 
   return (
     <RecoilRoot>

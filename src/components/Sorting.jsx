@@ -10,40 +10,8 @@ import {topListState} from './TopList';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 
-
-
-
 export default function Sorting() {
-        const [sorted, setSorted] = useRecoilState(topListState);
-        const [inputValue, setInputValue] = useState('');
-        let newSorted = JSON.parse(JSON.stringify(sorted));
-           
-        const sortItems = () => {
-            
-             function compare(a, b) {
-                if (a.id < b.id) return -1;
-                if (a.id > b.id) return 1;
-                return 0;
-             }   
-             newSorted.sort(compare);
-             console.log(newSorted);
-            setSorted(newSorted);
-        }
-     
-            const onChange = (event) => {
-                setInputValue(event.target.value);
-                console.log(event.target)
-                let i = inputValue.toString();
-                if(event.target.value == "") {
-                    console.log('empty')
-                    setSorted(newSorted);}
-                else {
-                    const filtered = newSorted.filter(item => item.id.includes(i.toLowerCase()));
-                 setSorted(filtered);
-                } 
-             
-            }
-
+   
 
       
     return (   
