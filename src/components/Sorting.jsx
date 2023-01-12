@@ -10,6 +10,7 @@ import {topListState} from './TopList';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button, FormGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import './sorting.css'
 
 const sortingStateFilter = atom({
     key: 'sortingStateFilter',
@@ -76,7 +77,7 @@ export const filteredSortingState = selector({
  <div className="col"><Button variant='link' onClick={updateToggle}>Asset</Button> </div>
  <div className="col">Price</div>
  <div className="col">Market Cap</div>
- <div className="col">7d %</div>
+ <div className="col mobile">7d %</div>
  </div>
  </div>
     </ListGroup.Item>
