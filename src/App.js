@@ -16,15 +16,16 @@ import Sorting from './components/Sorting';
 function NavigationBar() {
   return(
     <>
-    <Container fluid>
+    <Container fluid className='nav'>
     <Navbar bg="light" variant="light">
     
-      <Container>
+      <Container className='nav-container'>
           <Navbar.Brand href="#home"></Navbar.Brand>
-          <Nav className="me-auto" defaultActiveKey='#home' variant="tabs">
-            <Nav.Link href="#home">Cryptocurrencies</Nav.Link>
-            <Nav.Link href="#features">Watchlist</Nav.Link>
-            <Nav.Link href="#pricing">Portfolio</Nav.Link>
+          <Nav className='flex-column flex-sm-row' defaultActiveKey='#home' variant="tabs">
+            <Nav.Link className='nav-elem' href="#home">Cryptocurrencies</Nav.Link>
+            <Nav.Link className='nav-elem' href="#features">Watchlist</Nav.Link>
+            <Nav.Link className='nav-elem' href="#pricing">Portfolio</Nav.Link>
+            <Nav.Link className='nav-elem' href="#pricing">Portfolio</Nav.Link>
           </Nav>
         </Container>
     <Navbar.Text>

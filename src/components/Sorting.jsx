@@ -77,7 +77,7 @@ export const filteredSortingState = selector({
  <div className="col"><Button variant='link' onClick={updateToggle}>Asset</Button> </div>
  <div className="col">Price</div>
  <div className="col">Market Cap</div>
- <div className="col">7d %</div>
+ <div className="col mobile">7d %</div>
  </div>
  </div>
     </ListGroup.Item>

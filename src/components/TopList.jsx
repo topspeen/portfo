@@ -75,7 +75,7 @@ export default function TopList() {
           </div>
       <div className="col">{price_formatter.format(item.market_data.current_price.usd)}</div>
       <div className="col">{market_cap_formatter.format(item.market_data.market_cap.usd)}</div>
-      <div className="col">
+      <div className="col mobile">
         <span style={{color: item.market_data.price_change_percentage_7d > 0 ? 'green' : 'red' }}>{parseFloat(item.market_data.price_change_percentage_7d).toFixed(2)+"%"}</span>
       </div>
       
