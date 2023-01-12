@@ -8,6 +8,7 @@ import {
 } from 'recoil';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { filteredSortingState } from './Sorting';
+import './toplist.css'
 
 
 
