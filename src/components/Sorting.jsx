@@ -10,6 +10,7 @@ import {topListState} from './TopList';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button, FormGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import './sorting.css'
 
 const sortingStateFilter = atom({
     key: 'sortingStateFilter',
