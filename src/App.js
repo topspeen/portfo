@@ -8,31 +8,45 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './App.css';
-import {RecoilRoot} from 'recoil';
+import {RecoilRoot,
+useRecoilState} from 'recoil';
 import Card from 'react-bootstrap/Card';
 import Sorting from './components/Sorting';
+import { sortingStateFilter } from './components/Sorting';
+import Form from 'react-bootstrap/Form';
+
 
 
 function NavigationBar() {
+  
+  const [filter, setFilter] = useRecoilState(sortingStateFilter);
+
+    const updateFilter = ({target: {value}}) => setFilter(value);
+
   return(
     <>
-    <Container fluid className='nav'>
-    <Navbar bg="light" variant="light">
-    
-      <Container className='nav-container'>
-          <Navbar.Brand href="#home"></Navbar.Brand>
-          <Nav className='flex-column flex-sm-row' defaultActiveKey='#home' variant="tabs">
-            <Nav.Link className='nav-elem' href="#home">Cryptocurrencies</Nav.Link>
-            <Nav.Link className='nav-elem' href="#features">Watchlist</Nav.Link>
-            <Nav.Link className='nav-elem' href="#pricing">Portfolio</Nav.Link>
-            <Nav.Link className='nav-elem' href="#pricing">Portfolio</Nav.Link>
+  
+      <Container className='nav-container' >
+          <Nav className='flex-column flex-sm-row' 
+          defaultActiveKey='#home' 
+          variant="tabs"
+          onSelect={(selectedKey) => alert(`page ${selectedKey} still in development`)}
+          >
+            <Nav.Item>
+                <Nav.Link className='nav-elem' href="#home">Cryptocurrencies</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link className='nav-elem' eventKey="watchlist">Watchlist</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+               <Nav.Link className='nav-elem' eventKey="portfolio">Portfolio</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+               <Form.Control type="text" value={filter} onChange={updateFilter} placeholder="Search" />
+            </Nav.Item>
           </Nav>
-        </Container>
-    <Navbar.Text>
-            Signed in as: <a href="#login">Daxespen</a>
-          </Navbar.Text>
         
-      </Navbar>
+   
     </Container>
    
     </>
@@ -44,6 +58,12 @@ function App() {
 
   return (
     <RecoilRoot>
+        {/* <Navbar  bg="light" variant="light">
+    <Navbar.Text className='ml-auto'>
+            Signed in as: <a href="#login">Daxespen</a>
+          </Navbar.Text>
+      </Navbar> */}
+      <h>Signed in as: <a href="#login">Daxespen</a></h>
       <Card 
       border='light'>
       <Card.Body>

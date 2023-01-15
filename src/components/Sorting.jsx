@@ -12,12 +12,12 @@ import { Button, FormGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import './sorting.css'
 
-const sortingStateFilter = atom({
+export const sortingStateFilter = atom({
     key: 'sortingStateFilter',
     default: '',
 });
 
-const toggleFilter = atom({
+ const toggleFilter = atom({
     key: 'toggleFilter',
     default: false,
 });
@@ -47,12 +47,9 @@ export const filteredSortingState = selector({
 });
 
  export default function Sorting() {
-    const [filter, setFilter] = useRecoilState(sortingStateFilter);
+  
     const [toggle, setToggle] = useRecoilState(toggleFilter);
-
-    const updateFilter = ({target: {value}}) => setFilter(value);
     const updateToggle = () => setToggle(!toggle);
-
 
       
     return (   
@@ -63,7 +60,7 @@ export const filteredSortingState = selector({
   <div className="col">
     <Form>
         <Form.Group className='mb-1'>
-        <Form.Control type="text" value={filter} onChange={updateFilter} placeholder="Search" /> 
+         
 
         </Form.Group>
 
@@ -74,7 +71,7 @@ export const filteredSortingState = selector({
   </div>
   <div className="row">
  <div className="col"></div>
- <div className="col"><Button variant='link' onClick={updateToggle}>Asset</Button> </div>
+ <div className="col button"><Button variant='text' onClick={updateToggle}>Asset</Button> </div>
  <div className="col">Price</div>
  <div className="col">Market Cap</div>
  <div className="col mobile">7d %</div>

@@ -3,3 +3,12 @@
         display: none;
     }
 }
+
+.col.button button {
+    padding: 2px;
+}
+
+.col.button button:hover {
+    background-color: gray;
+    color: #fff;
+}
